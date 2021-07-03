@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC0-1.0
 
 ## small.wav
 
-A smallest possible WAV file. Only contains "fmt " chunk with basic properties and a "data" chunk with 0 audio samples.
+A smallest possible WAV file. Only contains a `fmt ` chunk with basic properties and a `data` chunk with 0 audio samples.
 
 Source: https://github.com/mathiasbynens/small/blob/4041a4f/wav.wav
 
