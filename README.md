@@ -6,8 +6,8 @@ SPDX-License-Identifier: CC0-1.0
 
 # Kaitai Struct: sample library
 
-[![REUSE compliant](https://github.com/kaitai-io/kaitai_struct_samples/actions/workflows/reuse-lint.yml/badge.svg)](
-  https://github.com/kaitai-io/kaitai_struct_samples/actions/workflows/reuse-lint.yml
+[![REUSE compliant](https://github.com/kaitai-io/kaitai_struct_samples/actions/workflows/reuse_lint.yml/badge.svg)](
+  https://github.com/kaitai-io/kaitai_struct_samples/actions/workflows/reuse_lint.yml
 )
 
 A library of sample files for testing file format specifications from the [Kaitai Struct: format library](https://github.com/kaitai-io/kaitai_struct_formats).
