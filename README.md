@@ -14,12 +14,12 @@ A library of sample files for testing file format specifications from the [Kaita
 
 ## Contributing
 
-Before adding a new file, it's necessary to find out who owns the copyright and under what license the file was released. If the file is on GitHub and you know the hash of a commit in which the file was added, this shell command may help you with the copyright (needs [curl](https://curl.se) and [jq](https://stedolan.github.io/jq)):
+Before adding a new file, it's necessary to find out who owns the copyright and under what license the file was released. If the file is hosted in a repository on GitHub and you know the hash of a commit in which the file was added, this shell command may help you with finding the author, who is usually also the copyright holder (needs [curl](https://curl.se) and [jq](https://stedolan.github.io/jq)):
 
 <details>
   <summary>Shell command for extracting the commit author</summary>
 
-  ```shell
+  ```sh
   auth_token=[login]:[token] # get [token] from <https://github.com/settings/tokens> (public access)
 
   repo=ElyesH/coreboot
@@ -29,11 +29,10 @@ Before adding a new file, it's necessary to find out who owns the copyright and 
     -u "$auth_token" \
     -H "Accept: application/vnd.github.v3+json" \
     "https://api.github.com/repos/$repo/commits/$commit_hash" \
-  | jq '{html_url, message: .commit.message | .[0:index("\n\n")], author: .commit.author, spdx: {copyright: (.commit.author.name + " <" + .commit.author.email + ">"), year: (if .commit.author.date | .[4:5] == "-" then .commit.author.date | .[0:4] else null end)}}'
+  | jq '{html_url, message: .commit.message | .[0:index("\n\n")], author: .commit.author, spdx: {copyright: (.commit.author.name + " <" + .commit.author.email + ">"), year: (if .commit.author.date | index("-") == 4 then .commit.author.date | .[0:4] else null end)}}'
   ```
 
 </details>
-
 
 <details>
 <summary>Example command output</summary>
@@ -55,15 +54,15 @@ Before adding a new file, it's necessary to find out who owns the copyright and 
 ```
 </details>
 
-Now when you know the copyright owner, find the project license and then create the `[file_name.ext].license` text file (for example `sample.bin.license` for `sample.bin`) with this format:
+When you know the copyright owner, find the license of the file. Then follow the [REUSE tutorial](https://reuse.software/tutorial/) to find out how to add the information in the repo.
 
+You can install [REUSE helper tool](https://github.com/fsfe/reuse-tool), which helps with making that the repo compliant with the REUSE recommendations. The most useful command is `reuse addheader`:
+
+```sh
+reuse addheader --year 2016 --copyright="Jane Doe <jane@example.com>" --license="CC0-1.0" category/format/sample.bin
 ```
-SPDX-FileCopyrightText: [year] [copyright holder] <[email address]>
 
-SPDX-License-Identifier: [identifier]
-```
-
-`[identifier]` must be a SPDX license identifier from https://spdx.org/licenses/.
+Others can be found in the [tutorial](https://reuse.software/tutorial/) in collapsible boxes marked as "Tool instructions for this step".
 
 ## Licensing
 
