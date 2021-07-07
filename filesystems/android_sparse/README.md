@@ -11,4 +11,6 @@ It can be converted back to a raw image with the following command:
 
     $ simg2img android_sparse.img android_sparse.raw
 
+`img2simg` and `simg2img` are part of the `android_tools` package.
+
 Source: own work
