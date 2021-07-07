@@ -118,6 +118,12 @@ The `v1.2` segment in the file name refers to the value
 Source: https://www.evernote.com/shard/s51/sh/c2f52608-bc17-4d5c-ac76-dec044eeb2e2/2f08de0cfb77217502cfc3a9188d84bf/res/3fb1d3d9-d809-48f6-9d3b-6e9a4af29892/skitch.png
 (from https://github.com/ember-cli/ember-cli-app-version/blob/9ca6dd52dbec1570b434b6fc16f7e2a62b95b366/README.md?plain=1#L24)
 
+## kaitai_test.png
+
+A 200x200 PNG file, created with GIMP, containing some metadata.
+
+Source: own work
+
 ---
 
 ## evernote-skitch-win32-v1.1.png [not in the repo]
