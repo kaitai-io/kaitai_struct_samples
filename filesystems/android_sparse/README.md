@@ -1,4 +1,10 @@
-# android_sparse.img
+<!--
+SPDX-FileCopyrightText: 2021 Armijn Hemel <armijn+github@tjaldur.nl>
+
+SPDX-License-Identifier: CC0-1.0
+-->
+
+## android_sparse.img
 
 An Android sparse image, that expands to a 4k raw image filled with zero bytes.
 
