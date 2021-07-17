@@ -1,4 +1,6 @@
-// SPDX-License-Identifier: GPL-2.0
+// SPDX-FileCopyrightText: 2012 Stefano Stabellini <stefano.stabellini@eu.citrix.com>
+//
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * Xen Virtual Machine for unprivileged guests
  *
