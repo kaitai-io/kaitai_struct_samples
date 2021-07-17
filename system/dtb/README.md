@@ -10,4 +10,4 @@ DTB blob, generated with:
 
     $ dtc xenvm-4.2.dts -o xenvm-4.2.dtb
 
-Source: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/xenvm-4.2.dts?id=b244131
+Source: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/xenvm-4.2.dts?id=b24413180f56
