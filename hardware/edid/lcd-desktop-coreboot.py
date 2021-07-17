@@ -30,7 +30,7 @@ def get_raw_edid_checksum(x):
     for i in range(127):
         sum += x[i]
 
-    return (- sum) & 0xFF
+    return -sum & 0xFF
 
 EDID_COLOR_R_X = 0x25 # Red X 0.640
 EDID_COLOR_R_Y = 0x152 # Red Y 0.330
