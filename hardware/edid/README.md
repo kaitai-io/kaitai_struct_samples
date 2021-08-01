@@ -24,10 +24,12 @@ Example of the old EDID 1.2 version.
 
 Source: https://git.linuxtv.org/edid-decode.git/tree/test/edid-1.2.test?id=9ca8433
 
-## lcd-desktop-coreboot.bin
+## vesa-edid-1.4-example1.py
 
-Frame is a modified example of an LCD Desktop IT display from [VESA E-EDID Standard Release A2](https://glenwing.github.io/docs/VESA-EEDID-A2.pdf).
+Sample base EDID (block 0) data structure for a typical LCD Desktop Display from the [VESA E-EDID Standard Release A2 (EDID 1.4)](https://glenwing.github.io/docs/VESA-EEDID-A2.pdf) (Section 6.1).
 
-Source: https://github.com/ElyesH/coreboot/blob/e0af9fcb2d/tests/lib/edid-test.c#L45-L256
+Source: https://git.linuxtv.org/edid-decode.git/tree/test/vesa-edid-1.4-1.test?id=9ca8433
 
-Python script for generating: [./lcd-desktop-coreboot.py](./lcd-desktop-coreboot.py)
+Python script for generating (run `python3 vesa-edid-1.4-example1.py` to regen): [./vesa-edid-1.4-example1.py](./vesa-edid-1.4-example1.py)
+
+> Note: the example directly in the EDID 1.4 standard has incorrect value of _Checksum_ at the very end, probably due to human error (there is ~~`0x0b`~~, should be <ins>`0x9a`</ins>). The [_vesa-edid-1.4-1.test_ file](https://git.linuxtv.org/edid-decode.git/tree/test/vesa-edid-1.4-1.test?id=9ca8433) from the `edid-decode` repository has this error fixed.
