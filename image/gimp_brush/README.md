@@ -10,7 +10,7 @@ A **grayscale** brush with only 1 fully opaque pixel. It has only 48 bytes in si
 
 Source: https://gitlab.gnome.org/GNOME/gimp/-/blob/fe946a7501/data/brushes/Basic/pixel.gbr
 
-> Note: license would be `GPL-3.0-or-later`, but I don't think that the data meets the threshold of originality to be copyrighted.
+> **Note:** license would be `GPL-3.0-or-later`, but I don't think that the data meets the threshold of originality to be copyrighted.
 
 ## rgba.gbr
 

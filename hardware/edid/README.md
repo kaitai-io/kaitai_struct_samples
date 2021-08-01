@@ -32,4 +32,4 @@ Source: https://git.linuxtv.org/edid-decode.git/tree/test/vesa-edid-1.4-1.test?i
 
 Python script for generating (run `python3 vesa-edid-1.4-example1.py` to regen): [./vesa-edid-1.4-example1.py](./vesa-edid-1.4-example1.py)
 
-> Note: the example directly in the EDID 1.4 standard has incorrect value of _Checksum_ at the very end, probably due to human error (there is ~~`0x0b`~~, should be <ins>`0x9a`</ins>). The [_vesa-edid-1.4-1.test_ file](https://git.linuxtv.org/edid-decode.git/tree/test/vesa-edid-1.4-1.test?id=9ca8433) from the `edid-decode` repository has this error fixed.
+> **Note:** the example directly in the EDID 1.4 standard has incorrect value of _Checksum_ at the very end, probably due to human error (there is ~~`0x0b`~~, should be <ins>`0x9a`</ins>). The [_vesa-edid-1.4-1.test_ file](https://git.linuxtv.org/edid-decode.git/tree/test/vesa-edid-1.4-1.test?id=9ca8433) from the `edid-decode` repository has this error fixed.
