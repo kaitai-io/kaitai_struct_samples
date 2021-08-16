@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC0-1.0
 
 ## fill-4k-zeros.img
 
-An Android sparse image, that expands to a 4 KiB raw image filled with zero bytes.
+An Android sparse image that expands to a 4 KiB raw image filled with zero bytes.
 
 It was created using the following commands:
 
