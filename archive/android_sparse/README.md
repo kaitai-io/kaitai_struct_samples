@@ -46,4 +46,6 @@ https://github.com/anestisb/android-simg2img which makes building somewhat
 easier) - parsing doesn't reveal any errors and even the CRC check succeeds
 (see [./extended-headers.py](./extended-headers.py) to find out how to enable it).
 
+Source: own work
+
 Python script for generating: [./extended-headers.py](./extended-headers.py)
