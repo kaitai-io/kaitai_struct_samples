@@ -17,6 +17,9 @@ It can be converted back to a raw image with the following command:
 
     $ simg2img fill-4k-zeros.img fill-4k-zeros.raw
 
-`img2simg` and `simg2img` are part of the `android_tools` package.
+`img2simg` and `simg2img` are included in the package called
+
+* `android-sdk-libsparse-utils` ([Debian](https://packages.debian.org/sid/android-sdk-libsparse-utils), [Ubuntu](https://packages.ubuntu.com/focal/android-sdk-libsparse-utils)) or
+* `android-tools` ([Fedora](https://src.fedoraproject.org/rpms/android-tools), [openSUSE](https://build.opensuse.org/package/show/openSUSE%3AFactory/android-tools), [Arch Linux](https://archlinux.org/packages/community/x86_64/android-tools/)).
 
 Source: own work
