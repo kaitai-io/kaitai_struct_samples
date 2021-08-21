@@ -85,10 +85,10 @@ checksum = binascii.crc32(bytes([x & 0xff for x in range(0x400)]), checksum)  # 
 #
 #   * For `FILL` chunks, the `chunk_sz` is disregarded and only one filled block
 #     is included in the checksum (i.e. as if `chunk_sz` was always set to `1`):
-#     <https://android.googlesource.com/platform/system/core/+/e8d02c50d7/libsparse/output_file.cpp#369>
+#     <https://android.googlesource.com/platform/system/core/+/e8d02c50d7/libsparse/output_file.cpp#364>
 #
 #   * `DONT_CARE` chunks are not included in the CRC-32 at all:
-#     <https://android.googlesource.com/platform/system/core/+/e8d02c50d7/libsparse/output_file.cpp#342>
+#     <https://android.googlesource.com/platform/system/core/+/e8d02c50d7/libsparse/output_file.cpp#336>
 #
 # If you want to verify that the CRC-32 checksum is correct, rather enable CRC
 # checking in `sparse_read.cpp` (which does not contain these errors) by passing
