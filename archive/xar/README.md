@@ -40,7 +40,7 @@ Shell commands to generate:
 printf %s $'hellohellohello\n' > f1
 chmod 0644 f1
 env TZ=utc touch -afm -t 197001020000.01 f1
-xar --compression none -cf archive9.xar f1
+xar --toc-cksum sha224 -cf custom-sha224-files-gzip.xar f1
 ```
 
 ## md5-dir.xar
