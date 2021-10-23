@@ -7,7 +7,7 @@
 #   - https://android.googlesource.com/platform/system/core/+/e8d02c50d7/libsparse/output_file.cpp
 #   - https://android.googlesource.com/platform/system/core/+/e8d02c50d7/libsparse/sparse_read.cpp
 
-# Code structure inspired by https://github.com/mathiasbynens/small/pull/50#issue-49006046
+# Code structure inspired by https://github.com/mathiasbynens/small/pull/50#issue-113822247
 
 import binascii
 

@@ -8,7 +8,7 @@
 #   - https://github.com/ElyesH/coreboot/blob/e0af9fcb2d/tests/lib/edid-test.c#L45-L256
 #   - https://github.com/ElyesH/coreboot/blob/e0af9fcb2d/tests/include/lib/edid-test.h
 
-# Code structure inspired by https://github.com/mathiasbynens/small/pull/50#issue-49006046
+# Code structure inspired by https://github.com/mathiasbynens/small/pull/50#issue-113822247
 
 import struct
 

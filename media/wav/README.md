@@ -10,4 +10,4 @@ A smallest possible WAV file. Only contains a `fmt ` chunk with basic properties
 
 Source: https://github.com/mathiasbynens/small/blob/4041a4f/wav.wav
 
-Python script for generating: https://github.com/mathiasbynens/small/pull/50#issue-49006046
+Python script for generating: https://github.com/mathiasbynens/small/pull/50#issue-113822247

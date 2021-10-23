@@ -7,7 +7,7 @@
 #   - https://source.codeaurora.org/quic/la/device/qcom/common/tree/meta_image/meta_format.h?h=LA.UM.6.1.1&id=a68d284aee85
 #   - https://androidfilehost.com/?fid=24407100847292744 "bootloader-angler-angler-01.31.img"
 
-# Code structure inspired by https://github.com/mathiasbynens/small/pull/50#issue-49006046
+# Code structure inspired by https://github.com/mathiasbynens/small/pull/50#issue-113822247
 
 endian = 'little'
 
