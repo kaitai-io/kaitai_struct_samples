@@ -112,7 +112,7 @@ Source: https://github.com/libarchive/libarchive/blob/1b2c437/libarchive/test/te
 > it might be derived from proprietary software so we should ideally purge
 > the file from any payloads that may be copyrighted.
 >
-> Also it could be made smaller in size (it has 83.3 KiB, this repo tries to keep
+> Also it could be made smaller in size (it has 83.4 KiB, this repo tries to keep
 > files somewhat smaller than that), but that's a secondary issue.
 
 This file appears to be interesting - it's a macOS `.pkg` installer of some
