@@ -39,7 +39,10 @@ data = (
     uint16(img_header_entries_sizeof)  # img_hdr_size
 )
 
-assert len(data) == meta_header_sizeof, 'Unexpected sizeof(meta_header): expected {}, but got {}'.format(meta_header_sizeof, len(data))
+assert len(data) == meta_header_sizeof, (
+    'Unexpected sizeof(meta_header): wrote {} in the `meta_header`, but I am currently at {}'
+    .format(meta_header_sizeof, len(data))
+)
 
 partitions = [
     {  # img_header[0]
@@ -95,6 +98,7 @@ start_offset = meta_header_sizeof + img_header_entries_sizeof
 
 for p in partitions:
     len_body = len(p['body'])
+    # p['start_offset'] = start_offset - 1 if p['name'] == b'sbl1' else start_offset  # p['start_offset'] assertion test
     p['start_offset'] = start_offset
     data += (
         p['name'].ljust(72, b'\x00') +  # ptn_name
@@ -111,7 +115,7 @@ data += (
 for i, p in enumerate(partitions):
     pos = len(data)
     assert pos == p['start_offset'], (
-        'Unexpected start_offset for partitions[{}]: expected {}, but got {}'
+        'Unexpected start_offset for partitions[{}]: wrote {} in the `img_header` entry, but I am currently at {}'
         .format(i, p['start_offset'], pos)
     )
     data += p['body']
