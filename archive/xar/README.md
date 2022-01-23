@@ -16,8 +16,7 @@ Shell commands to generate:
 
 ```sh
 # Requires `7z` from <https://www.7-zip.org/> - install `p7zip-full` on Debian/Ubuntu
-curl -LO https://github.com/jhermsmeier/node-xarchive/raw/93dffe2/test/data/test.xar
-mv test.xar apple-sha512-files-gzip.xar
+curl -L -o apple-sha512-files-gzip.xar https://github.com/jhermsmeier/node-xarchive/raw/93dffe2/test/data/test.xar
 phys_size=$(7z l apple-sha512-files-gzip.xar | sed -En 's/^Physical Size = ([0-9]+)$/\1/p')
 [ -n "$phys_size" ] \
   && [ "$phys_size" -ne "$(wc -c < apple-sha512-files-gzip.xar)" ] \
