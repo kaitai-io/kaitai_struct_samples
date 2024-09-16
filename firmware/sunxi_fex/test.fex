@@ -1,0 +1,12 @@
+[test]
+kaitai = "struct"
+version = 100500
+is_awesome =
+
+[ports]
+python = port:PA01<1><2><3><4>
+js = port:PB01<1><2><3><default>
+scala = port:PC01<1><2><default><default>
+java = port:PD01<1><default><default><default>
+rust = port:power1<default><default><default><default>
+
