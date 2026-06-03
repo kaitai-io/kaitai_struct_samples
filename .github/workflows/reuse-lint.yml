@@ -13,8 +13,8 @@ on:
 permissions: {}
 
 jobs:
-  lint:
-    name: Lint
+  check:
+    name: Check
     runs-on: ubuntu-latest
     permissions:
       contents: read
