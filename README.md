@@ -6,8 +6,8 @@ SPDX-License-Identifier: CC0-1.0
 
 # Kaitai Struct: sample library
 
-[![REUSE compliant](https://github.com/kaitai-io/kaitai_struct_samples/actions/workflows/reuse_lint.yml/badge.svg)](
-  https://github.com/kaitai-io/kaitai_struct_samples/actions/workflows/reuse_lint.yml
+[![REUSE compliance check](https://github.com/kaitai-io/kaitai_struct_samples/actions/workflows/reuse-lint.yml/badge.svg)](
+  https://github.com/kaitai-io/kaitai_struct_samples/actions/workflows/reuse-lint.yml
 )
 
 A library of sample files for testing file format specifications from the [Kaitai Struct: format library](https://github.com/kaitai-io/kaitai_struct_formats).
@@ -54,16 +54,18 @@ Before adding a new file, it's necessary to find out who owns the copyright and 
 ```
 </details>
 
-When you know the copyright owner, find the license of the file. Then follow the [REUSE tutorial](https://reuse.software/tutorial/) to find out how to add the information in the repo.
+When you know the copyright owner, find the license of the file. Then follow the [REUSE tutorial](https://reuse.software/tutorial/) to find out how to add the information to the repository.
 
-You can install [REUSE helper tool](https://github.com/fsfe/reuse-tool), which helps with making that the repo compliant with the REUSE recommendations. The most useful command is `reuse addheader`:
+You can use the REUSE helper tool (hosted primarily [on Codeberg](https://codeberg.org/fsfe/reuse-tool), but a mirror is also available [on GitHub](https://github.com/fsfe/reuse-tool)), which helps ensure that this project is compliant with the [REUSE Specification](https://reuse.software/spec/). It is **strongly recommended to use [`uv`](https://github.com/astral-sh/uv)** to install and manage the REUSE tool. This repository contains [`pyproject.toml`](./pyproject.toml) and [`uv.lock`](./uv.lock), which lock the exact versions of [`reuse`](https://pypi.org/project/reuse/) and its dependencies. That means you only need to [install `uv`](https://docs.astral.sh/uv/getting-started/installation/) (which can optionally also be used to [install and manage Python](https://docs.astral.sh/uv/guides/install-python/)), and then always invoke the REUSE tool as `uv run reuse <command>`. This ensures that the version of the `reuse` tool is consistent across all developer machines and in the CI environment (GitHub Actions workflow [`reuse-lint.yml`](./.github/workflows/reuse-lint.yml)).
+
+The most useful command is `reuse annotate`:
 
 ```sh
-reuse addheader --year 2016 --copyright="Jane Doe <jane@example.com>" --license="CC0-1.0" category/format/sample.bin
+uv run reuse annotate -y 2026 -c 'Jane Doe <jane@example.com>' -l 'CC0-1.0' category/format/sample.bin
 ```
 
-Others can be found in the [tutorial](https://reuse.software/tutorial/) in collapsible boxes marked as "Tool instructions for this step".
+The usage of all commands is explained in the [documentation](https://reuse.readthedocs.io/en/stable/man/reuse.html#commands).
 
 ## Licensing
 
-This repository uses [REUSE](https://reuse.software/) to keep track of copyright and licensing information, so check the comment headers of individual files, or a file with the same name with the `.license` extension added (for binary files).
+This repository uses [REUSE](https://reuse.software/) to track copyright and licensing information, so check the comment headers of individual files, or a file of the same name with the `.license` extension appended (in the case of binary, [uncommentable](https://reuse.software/faq/#uncommentable-file) or generated files).

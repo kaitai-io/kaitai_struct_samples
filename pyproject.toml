@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: 2026 Petr Pucil <petr.pucil@seznam.cz>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+[project]
+name = "samples"
+version = "0"
+description = "Not a real Python project - we just want to use `uv` to install & manage the REUSE tool"
+requires-python = ">=3.10"
+dependencies = [
+    "reuse>=6.2.0",
+]
+
+[tool.uv]
+# This tells `uv` that this is *not* a Python package, but a non-package
+# ("virtual") project. See:
+#   1. https://docs.astral.sh/uv/reference/settings/#package
+#   2. https://docs.astral.sh/uv/concepts/projects/dependencies/#virtual-dependencies
+package = false
+
+# See https://github.com/lirantal/pypi-security-best-practices/blob/252af6a8eddd2cbc45b7cc60fd478666c3236499/README.md#2-install-with-cooldown
+exclude-newer = "7 days"
+
+# See:
+#   1. https://github.com/lirantal/pypi-security-best-practices/blob/252af6a8eddd2cbc45b7cc60fd478666c3236499/README.md#1-prefer-binary-only-installs
+#   2. https://docs.astral.sh/uv/reference/settings/#pip_no-build
+[tool.uv.pip]
+no-build = true
