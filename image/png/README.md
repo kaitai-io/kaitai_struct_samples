@@ -29,3 +29,45 @@ https://nullprogram.com/blog/2021/12/31/#example-png):
 
 Source: https://nullprogram.com/img/atch-test.png
 (from https://nullprogram.com/blog/2021/12/31/#example-png)
+
+## evernote-skitch-mac-v1.2.png
+
+A screenshot created using Skitch for Mac, a tool for editing and sharing
+screenshots (acquired by Evernote in 2011). It contains
+[private](https://www.w3.org/TR/png-3/#sec-defining-private-chunks)
+[ancillary](https://www.w3.org/TR/png-3/#12Ancillary) chunks `skMf` and `skRf`
+used for storing editable annotations (text, lines, paths, etc.). [This
+comment](https://web.archive.org/web/20210302212148/https://discussion.evernote.com/forums/topic/88532-how-to-extract-annotation-information-from-annotated-evernoteskitch-images/#comment-451501)
+explains what they mean:
+
+> The content of the skMf chunk is a description of the annotation (colours,
+> fonts, position, text, etc.) encoded in JSON and stored as an uncompressed
+> string.
+
+> The skRf chunk is much, much larger and I believe it contains the raw image
+> without annotations.
+
+For convenience, the contents of the `skMf` chunk were dumped and pretty-printed
+into the file
+[`evernote-skitch-mac-v1.2-skMf.json`](./evernote-skitch-mac-v1.2-skMf.json)
+using the following commands:
+
+```console
+$ grep -b -o -a -F 'skMf' evernote-skitch-mac-v1.2.png
+43262:skMf
+$ xxd -s "$((43262 - 4))" -l 4 evernote-skitch-mac-v1.2.png
+0000a8fa: 0000 063d                                ...=
+$ LC_ALL=C dd if=evernote-skitch-mac-v1.2.png of=evernote-skitch-mac-v1.2-skMf-raw.json bs=1 skip="$((43262 + 4))" count="$((0x063d))"
+1597+0 records in
+1597+0 records out
+1597 bytes (1.6 kB, 1.6 KiB) copied, 0.002097 s, 799 kB/s
+$ jq -b . evernote-skitch-mac-v1.2-skMf-raw.json > evernote-skitch-mac-v1.2-skMf.json
+```
+
+The `v1.2` segment in the file name refers to the value
+`.metadata.version = "1.2"` in the `skMf` JSON document (see
+[line 103](./evernote-skitch-mac-v1.2-skMf.json#L103) of the
+`evernote-skitch-mac-v1.2-skMf.json` file).
+
+Source: https://www.evernote.com/shard/s51/sh/c2f52608-bc17-4d5c-ac76-dec044eeb2e2/2f08de0cfb77217502cfc3a9188d84bf/res/3fb1d3d9-d809-48f6-9d3b-6e9a4af29892/skitch.png
+(from https://github.com/ember-cli/ember-cli-app-version/blob/9ca6dd52dbec1570b434b6fc16f7e2a62b95b366/README.md?plain=1#L24)

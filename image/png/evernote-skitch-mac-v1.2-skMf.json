@@ -1,0 +1,107 @@
+{
+  "frame": {
+    "y": 0,
+    "x": 0,
+    "width": 600,
+    "height": 331
+  },
+  "children": [
+    {
+      "layerId": "__background__",
+      "type": "Layer",
+      "children": [
+        {
+          "frame": {
+            "y": 0,
+            "x": 0,
+            "width": 600,
+            "height": 331
+          },
+          "imageProfile": 0,
+          "type": "Bitmap",
+          "uri": "skitch+uuid:///c3607378-be13-480e-b14c-2f8c5333adbc",
+          "guid": "E20232DD-06E8-4B48-B12C-AC915547BA8E"
+        }
+      ],
+      "guid": "064757B8-0493-4DA7-B11B-D5830931D065"
+    },
+    {
+      "layerId": "__annotation__",
+      "type": "Layer",
+      "children": [
+        {
+          "path": "M420.141,264.742L550.512,264.742",
+          "strokeColor": {
+            "red": 255,
+            "alpha": 1,
+            "blue": 0,
+            "green": 0
+          },
+          "lineWidth": 7,
+          "type": "Vector",
+          "extension": {
+            "type": "Line",
+            "endPoint": {
+              "x": 550.51171875,
+              "y": 264.7421875
+            },
+            "startPoint": {
+              "x": 420.140625,
+              "y": 264.7421875
+            }
+          },
+          "guid": "47FEE33E-D2A9-442D-923A-12E2AAA8FB96"
+        }
+      ],
+      "guid": "65431FE9-BE96-4320-B8E6-9431DDAC3B24"
+    },
+    {
+      "layerId": "__text__",
+      "type": "Layer",
+      "children": [
+        {
+          "textStyle": "bubbleText",
+          "font": {
+            "name": "Helvetica-Bold",
+            "size": 18.57015451922376
+          },
+          "lineWidth": 5.199643265382652,
+          "strokeColor": {
+            "red": 255,
+            "alpha": 1,
+            "blue": 255,
+            "green": 255
+          },
+          "type": "Text",
+          "alignment": "left",
+          "wrapWidth": 381.661657565579,
+          "origin": {
+            "x": 196.5859375,
+            "y": 285.43109375
+          },
+          "text": "from `git describe` or package.json version",
+          "guid": "8D06E896-17E1-44DA-8D31-E1888D3CB451",
+          "fillColor": {
+            "red": 255,
+            "alpha": 1,
+            "blue": 0,
+            "green": 0
+          },
+          "direction": "leftToRight"
+        }
+      ],
+      "guid": "C38DB7B0-3276-431B-893D-D691AA978FD3"
+    }
+  ],
+  "title": "Developer Tools - http://localhost:4200/",
+  "deviceScale": 1,
+  "type": "Document",
+  "metadata": {
+    "creatorVersion": "263732",
+    "title": "Developer Tools - http://localhost:4200/",
+    "creator": "skitch-mac",
+    "version": "1.2"
+  },
+  "guid": "CD1216EF-EF22-43EC-860E-56841A6C998B",
+  "contentScaleFactor": 1
+}
