@@ -20,15 +20,16 @@ Before adding a new file, it's necessary to find out who owns the copyright and 
   <summary>Shell command for extracting the commit author</summary>
 
   ```sh
-  auth_token=[login]:[token] # get [token] from <https://github.com/settings/tokens> (public access)
+  gh_auth_token=__YOUR_TOKEN__ # get __YOUR_TOKEN__ from https://github.com/settings/personal-access-tokens (public access)
 
   repo=ElyesH/coreboot
-  commit_hash=e0af9fcb2d526ffd654d0bb573dd5333d0d76269
+  sha=e0af9fcb2d526ffd654d0bb573dd5333d0d76269
   curl \
-    -s \
-    -u "$auth_token" \
-    -H "Accept: application/vnd.github.v3+json" \
-    "https://api.github.com/repos/$repo/commits/$commit_hash" \
+    --fail-with-body -sSL \
+    -H "Accept: application/vnd.github+json" \
+    -H "Authorization: Bearer $gh_auth_token" \
+    -H "X-GitHub-Api-Version: 2026-03-10" \
+    "https://api.github.com/repos/$repo/commits/$sha" \
   | jq '{html_url, message: .commit.message | .[0:index("\n\n")], author: .commit.author, spdx: {copyright: (.commit.author.name + " <" + .commit.author.email + ">"), year: (if .commit.author.date | index("-") == 4 then .commit.author.date | .[0:4] else null end)}}'
   ```
 
