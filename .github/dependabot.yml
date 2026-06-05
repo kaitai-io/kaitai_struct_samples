@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: NONE
+#
+# SPDX-License-Identifier: CC0-1.0
+
+# See https://github.com/kaitai-io/.github/blob/0bf3b93ceb1d254f5b3333eb9b7c40d92fcef16e/.github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
