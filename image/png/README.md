@@ -30,6 +30,52 @@ https://nullprogram.com/blog/2021/12/31/#example-png):
 Source: https://nullprogram.com/img/atch-test.png
 (from https://nullprogram.com/blog/2021/12/31/#example-png)
 
+## evernote-skitch-mac-v1.1.png
+
+A screenshot created using Skitch for Mac - see
+[evernote-skitch-mac-v1.2.png](#evernote-skitch-mac-v12png) for more details.
+
+For convenience, the contents of the `skMf` chunk were dumped and pretty-printed
+into the file
+[`evernote-skitch-mac-v1.1-skMf.json`](./evernote-skitch-mac-v1.1-skMf.json)
+using the following commands:
+
+```console
+$ grep -b -o -a -F 'skMf' evernote-skitch-mac-v1.1.png
+13843:skMf
+$ xxd -s "$((13843 - 4))" -l 4 evernote-skitch-mac-v1.1.png
+0000360f: 0000 0205                                ....
+$ LC_ALL=C dd if=evernote-skitch-mac-v1.1.png of=evernote-skitch-mac-v1.1-skMf-raw.json bs=1 skip="$((13843 + 4))" count="$((0x0205))"
+517+0 records in
+517+0 records out
+517 bytes copied, 0.0013973 s, 517 kB/s
+$ jq -b . evernote-skitch-mac-v1.1-skMf-raw.json > evernote-skitch-mac-v1.1-skMf.json
+```
+
+The `v1.1` segment in the file name refers to the value
+`.metadata.version = "1.1"` in the `skMf` JSON document (see
+[line 6](./evernote-skitch-mac-v1.1-skMf.json#L6) of the
+`evernote-skitch-mac-v1.1-skMf.json` file).
+
+> [!NOTE]
+> Apparently, both `skMf` and `skRf` chunks have invalid CRC:
+>
+> ```console
+> $ exiftool -v evernote-skitch-mac-v1.1.png | grep -E 'skMf|skRf'
+>   Warning = Bad CRC for skMf chunk
+> PNG skMf (517 bytes):
+>   Warning = Bad CRC for skRf chunk
+> PNG skRf (15448 bytes):
+> ```
+>
+> This is probably characteristic for (all?) Skitch PNG files with
+> `.metadata.version = "1.1"` in `skMf` - see [this Mozilla bug
+> report](https://bugzilla.mozilla.org/show_bug.cgi?id=857040), which is also
+> about a v1.1 file.
+
+Source: https://www.evernote.com/shard/s265/sh/1d0ef423-e5de-4e40-a110-fad2ccd01bef/22bffc622af4152261b63184ad4b8cae/res/645f4d83-f8a8-45c7-8ec7-b2fc12b5e16d/skitch.png
+(from https://github.com/kevinburke/tecate/blob/064d878faf20a13966d5d78d344f1882664495bc/README.md?plain=1#L28)
+
 ## evernote-skitch-mac-v1.2.png
 
 A screenshot created using Skitch for Mac, a tool for editing and sharing

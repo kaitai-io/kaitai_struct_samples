@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "creatorVersion": "262476",
+    "title": "Screenshot 2/11/13 9:48 PM",
+    "creator": "skitch-mac",
+    "version": "1.1"
+  },
+  "frame": {
+    "y": 0,
+    "x": 0,
+    "width": 638,
+    "height": 72
+  },
+  "deviceScale": 1,
+  "type": "Document",
+  "children": [
+    {
+      "type": "Layer",
+      "layerId": "__background__",
+      "children": [
+        {
+          "frame": {
+            "y": 0,
+            "x": 0,
+            "width": 638,
+            "height": 72
+          },
+          "imageProfile": 0,
+          "type": "Bitmap",
+          "uri": "skitch+uuid:///4be6ab77-68d6-460d-85f7-2e4d75ba1033"
+        }
+      ]
+    },
+    {
+      "type": "Layer",
+      "layerId": "__annotation__"
+    },
+    {
+      "type": "Layer",
+      "layerId": "__text__"
+    }
+  ],
+  "contentScaleFactor": 1
+}
