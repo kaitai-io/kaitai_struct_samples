@@ -117,3 +117,81 @@ The `v1.2` segment in the file name refers to the value
 
 Source: https://www.evernote.com/shard/s51/sh/c2f52608-bc17-4d5c-ac76-dec044eeb2e2/2f08de0cfb77217502cfc3a9188d84bf/res/3fb1d3d9-d809-48f6-9d3b-6e9a4af29892/skitch.png
 (from https://github.com/ember-cli/ember-cli-app-version/blob/9ca6dd52dbec1570b434b6fc16f7e2a62b95b366/README.md?plain=1#L24)
+
+---
+
+## evernote-skitch-win32-v1.1.png [not in the repo]
+
+This file is interesting for multiple reasons:
+
+1. According to the `skMf` chunk, it was created by Skitch for Windows (not for
+   Mac, as is usually the case).
+
+2. The value of `.metadata.title` is `"Skærmbillede"` (which means "screenshot"
+   in Danish). Based on the binary representation of the non-ASCII character in
+   the file, we can conclude that the `skMf` chunk is encoded in UTF-8.
+
+3. There are no annotations - in fact, the usual `__annotation__` and `__text__`
+   layers are not present at all. There is only the `__background__` layer that
+   refers to the original image.
+
+4. The original image embedded in the `skRf` chunk is a JPEG file (not a PNG
+   file).
+
+This file is not included in the repository because it was simply uploaded to
+[this forum
+thread](https://community.aveva.com/pi-square-community/f/forum/89970/interfaces-connections-securitym-strange-problem)
+([archived](https://web.archive.org/web/20260608094951/https://community.aveva.com/pi-square-community/f/forum/89970/interfaces-connections-securitym-strange-problem))
+without any mention of a license. However, I believe I can at least extract and
+include the `skMf` chunk (it's almost certainly uncopyrightable because it only
+contains generic metadata):
+
+```console
+$ grep -b -o -a -F 'skMf' evernote-skitch-win32-v1.1.png
+417094:skMf
+$ xxd -s "$((417094 - 4))" -l 4 evernote-skitch-win32-v1.1.png
+00065d42: 0000 0246                                ...F
+$ LC_ALL=C dd if=evernote-skitch-win32-v1.1.png of=evernote-skitch-win32-v1.1-skMf-raw.json bs=1 skip="$((417094 + 4))" count="$((0x0246))"
+582+0 records in
+582+0 records out
+582 bytes copied, 0.0008786 s, 582 kB/s
+$ jq -b . evernote-skitch-win32-v1.1-skMf-raw.json > evernote-skitch-win32-v1.1-skMf.json
+```
+
+See [`evernote-skitch-win32-v1.1-skMf.json`](./evernote-skitch-win32-v1.1-skMf.json).
+
+> [!NOTE]
+> This file was found using the following Google search query:
+> [`"skitch.png" "license"`](https://www.google.com/search?q=%22skitch.png%22+%22license%22)
+
+> [!NOTE]
+> For posterity, I used the Wayback Machine to
+> [archive](https://web.archive.org/web/20260608094951/https://community.aveva.com/pi-square-community/f/forum/89970/interfaces-connections-securitym-strange-problem)
+> the forum thread where the file comes from. However, the JavaScript code that
+> is supposed to allow the full-size versions of the images to be displayed upon
+> clicking on the thumbnails is broken in the archived version. In the live
+> version, it leads here:
+> https://community.aveva.com/cfs-file/__key/communityserver-discussions-components-files/1670/7183.skitch.png.png
+> (note that [Cloudflare Polish](https://developers.cloudflare.com/images/polish/)
+> is used, so if you see `cf-cache-status: HIT` and
+> `cf-polished: ok, orig_size=455555` in the response headers, it means you got
+> an optimized WEBP/PNG without the `skMf` and `skRf` chunks. To get the
+> original 455555-byte file, you need to add a unique query parameter that
+> Cloudflare hasn't seen yet in order to get the response header
+> `cf-cache-status: MISS`.)
+
+> [!NOTE]
+> I was unable to archive the original image on the Wayback Machine due to image
+> optimization performed by Cloudflare Polish (see note above), so instead, I
+> archived it on **archive.today**: https://archive.today/BEp3B
+>
+> You can download the file from there like this:
+>
+> ```console
+> $ curl -fsSL -o evernote-skitch-win32-v1.1.png https://archive.today/BEp3B/2bf9c884e2d322bf859f5c09ae72da3f2e5b8eb9.png
+> $ echo 'f696c1b0bdfb9767a85e444a397fb345eea0b28a11d765d8f5274f499ac86a2b *evernote-skitch-win32-v1.1.png' | sha256sum -c -w -
+> evernote-skitch-win32-v1.1.png: OK
+> ```
+
+Source: https://community.aveva.com/cfs-file/__key/communityserver-discussions-components-files/1670/7183.skitch.png.png
+(from https://community.aveva.com/pi-square-community/f/forum/89970/interfaces-connections-securitym-strange-problem)
