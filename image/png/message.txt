@@ -1,0 +1,4 @@
+Congratulations!
+
+You have successfully extracted this PNG attachment. Did you write your
+own tool to do so? If not, give it a shot!
