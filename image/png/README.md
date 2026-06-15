@@ -41,14 +41,7 @@ into the file
 using the following commands:
 
 ```console
-$ grep -b -o -a -F 'skMf' evernote-skitch-mac-v1.1.png
-13843:skMf
-$ xxd -s "$((13843 - 4))" -l 4 evernote-skitch-mac-v1.1.png
-0000360f: 0000 0205                                ....
-$ LC_ALL=C dd if=evernote-skitch-mac-v1.1.png of=evernote-skitch-mac-v1.1-skMf-raw.json bs=1 skip="$((13843 + 4))" count="$((0x0205))"
-517+0 records in
-517+0 records out
-517 bytes copied, 0.0013973 s, 517 kB/s
+$ ./extract_chunks.py -t skMf -o evernote-skitch-mac-v1.1-skMf-raw.json evernote-skitch-mac-v1.1.png
 $ jq -b . evernote-skitch-mac-v1.1-skMf-raw.json > evernote-skitch-mac-v1.1-skMf.json
 ```
 
@@ -99,14 +92,7 @@ into the file
 using the following commands:
 
 ```console
-$ grep -b -o -a -F 'skMf' evernote-skitch-mac-v1.2.png
-43262:skMf
-$ xxd -s "$((43262 - 4))" -l 4 evernote-skitch-mac-v1.2.png
-0000a8fa: 0000 063d                                ...=
-$ LC_ALL=C dd if=evernote-skitch-mac-v1.2.png of=evernote-skitch-mac-v1.2-skMf-raw.json bs=1 skip="$((43262 + 4))" count="$((0x063d))"
-1597+0 records in
-1597+0 records out
-1597 bytes (1.6 kB, 1.6 KiB) copied, 0.002097 s, 799 kB/s
+$ ./extract_chunks.py -t skMf -o evernote-skitch-mac-v1.2-skMf-raw.json evernote-skitch-mac-v1.2.png
 $ jq -b . evernote-skitch-mac-v1.2-skMf-raw.json > evernote-skitch-mac-v1.2-skMf.json
 ```
 
@@ -154,14 +140,7 @@ include the `skMf` chunk (it's almost certainly uncopyrightable because it only
 contains generic metadata):
 
 ```console
-$ grep -b -o -a -F 'skMf' evernote-skitch-win32-v1.1.png
-417094:skMf
-$ xxd -s "$((417094 - 4))" -l 4 evernote-skitch-win32-v1.1.png
-00065d42: 0000 0246                                ...F
-$ LC_ALL=C dd if=evernote-skitch-win32-v1.1.png of=evernote-skitch-win32-v1.1-skMf-raw.json bs=1 skip="$((417094 + 4))" count="$((0x0246))"
-582+0 records in
-582+0 records out
-582 bytes copied, 0.0008786 s, 582 kB/s
+$ ./extract_chunks.py -t skMf -o evernote-skitch-win32-v1.1-skMf-raw.json evernote-skitch-win32-v1.1.png
 $ jq -b . evernote-skitch-win32-v1.1-skMf-raw.json > evernote-skitch-win32-v1.1-skMf.json
 ```
 
