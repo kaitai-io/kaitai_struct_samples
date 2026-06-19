@@ -105,7 +105,7 @@ def run_single(file_path: Path, chunk_type: str, outfile: Path) -> None:
 
 
 def run(files: list[Path], chunk_types: set[str], outdir: Path) -> None:
-    outdir.mkdir(exist_ok=True)
+    outdir.mkdir(parents=True, exist_ok=True)
     for chunk_type in chunk_types:
         validate_chunk_type(chunk_type)
         (outdir / chunk_type).mkdir(exist_ok=True)
