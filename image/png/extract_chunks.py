@@ -76,6 +76,23 @@ def copyfileobj_with_limit(
     return remaining
 
 
+def open_no_clobber(path: Path) -> typing.BinaryIO:
+    """Open `path` for exclusive binary writing, refusing to overwrite.
+
+    Output names in `-d` mode are derived from the input's base name, so inputs
+    that share a base name would otherwise clobber each other. The collision can
+    even span separate invocations (e.g. when `xargs` splits the file list into
+    batches), so we detect it at the actual write rather than up front.
+    """
+    try:
+        return path.open("xb")
+    except FileExistsError as e:
+        raise ValueError(
+            f"refusing to overwrite existing output file {path};"
+            f" clean the output directory and re-run"
+        ) from e
+
+
 def run_single(file_path: Path, chunk_type: str, outfile: Path) -> None:
     validate_chunk_type(chunk_type)
 
@@ -128,7 +145,7 @@ def run(files: list[Path], chunk_types: set[str], outdir: Path) -> None:
                     continue
                 name = f"{file_path.name}-{i:0{index_width}d}.bin"
                 out_path = outdir / chunk_type / name
-                with out_path.open("wb") as out_f:
+                with open_no_clobber(out_path) as out_f:
                     f.seek(span.offset)
                     remaining = copyfileobj_with_limit(f, out_f, span.length)
                 if remaining > 0:
@@ -136,7 +153,13 @@ def run(files: list[Path], chunk_types: set[str], outdir: Path) -> None:
                         f"{file_path}: chunk {i} of type {chunk_type!r} is truncated"
                         f" (wanted {span.length} bytes, but only {span.length - remaining} bytes written)"
                     )
-                    out_path.replace(out_path.with_name(name + ".trunc"))
+                    trunc_path = out_path.with_name(name + ".trunc")
+                    if trunc_path.exists():
+                        raise ValueError(
+                            f"refusing to overwrite existing output file {trunc_path};"
+                            f" clean the output directory and re-run"
+                        )
+                    out_path.rename(trunc_path)
 
 
 def main() -> None:
