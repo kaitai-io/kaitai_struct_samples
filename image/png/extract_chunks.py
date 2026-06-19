@@ -23,6 +23,13 @@ PNG_CHUNK_TYPE_RE = re.compile(r"[A-Za-z]{4}")
 PACKER_U4BE = struct.Struct(">I")
 
 
+def validate_chunk_type(chunk_type: str) -> None:
+    if PNG_CHUNK_TYPE_RE.fullmatch(chunk_type) is None:
+        raise ValueError(
+            f"expected an ASCII 4-letter chunk type, but got {chunk_type!r}"
+        )
+
+
 @dataclass
 class ChunkBodySpan:
     type: str
@@ -70,10 +77,7 @@ def copyfileobj_with_limit(
 
 
 def run_single(file_path: Path, chunk_type: str, outfile: Path) -> None:
-    if PNG_CHUNK_TYPE_RE.fullmatch(chunk_type) is None:
-        raise ValueError(
-            f"expected an ASCII 4-letter chunk type, but got {chunk_type!r}"
-        )
+    validate_chunk_type(chunk_type)
 
     with file_path.open("rb") as f:
         chunk_body_spans = get_chunk_body_spans(f)
@@ -103,11 +107,7 @@ def run_single(file_path: Path, chunk_type: str, outfile: Path) -> None:
 def run(files: list[Path], chunk_types: set[str], outdir: Path) -> None:
     outdir.mkdir(exist_ok=True)
     for chunk_type in chunk_types:
-        if PNG_CHUNK_TYPE_RE.fullmatch(chunk_type) is None:
-            raise ValueError(
-                f"expected an ASCII 4-letter chunk type, but got {chunk_type!r}"
-            )
-
+        validate_chunk_type(chunk_type)
         (outdir / chunk_type).mkdir(exist_ok=True)
 
     for file_path in files:
