@@ -1,0 +1,52 @@
+File: libpng-pngtest.png (8831 bytes)
+  chunk IHDR at offset 0x0000c, length 13
+    91 x 69 image, 32-bit RGB+alpha, interlaced
+  chunk sBIT at offset 0x00025, length 4
+    red = 5 = 0x05, green = 5 = 0x05, blue = 5 = 0x05, alpha = 5 = 0x05
+  chunk cLLI at offset 0x00035, length 8
+    Maximum content light level = 300 cd/m^2
+    Maximum frame average light level = 20 cd/m^2
+  chunk mDCV at offset 0x00049, length 24
+    Mastering Display
+    White x = 0.17284 y = 0.17926,  Red x = 0.36734 y = 0.13264
+    Green x = 0.0798 y = 0.4202,  Blue x = 0.0183 y = 4e-05
+    Maximum luminance = 80 cd/m^2
+    Minimum luminance = 1 cd/m^2
+  chunk cICP at offset 0x0006d, length 4
+   IEC 61966-2-1 sRGB 
+    White x = 0.3127 y = 0.329,  Red x = 0.64 y = 0.33
+    Green x = 0.3 y = 0.6,  Blue x = 0.15 y = 0.06
+    Full range 
+  chunk sRGB at offset 0x0007d, length 1
+    rendering intent = relative colorimetric
+  chunk gAMA at offset 0x0008a, length 4: 0.45455
+  chunk cHRM at offset 0x0009a, length 32
+    White x = 0.31270 y = 0.32900,  Red x = 0.64000 y = 0.33000
+    Green x = 0.30000 y = 0.60000,  Blue x = 0.15000 y = 0.06000
+  chunk sTER at offset 0x000c6, length 1
+    stereo subimage layout = divergent (parallel)
+  chunk vpAg at offset 0x000d3, length 9
+    unknown private, ancillary, safe-to-copy chunk
+  chunk bKGD at offset 0x000e8, length 6
+    red = 0x00e0, green = 0x00e0, blue = 0x0080
+  chunk oFFs at offset 0x000fa, length 9: 4294967286x20 micrometers offset
+  chunk pCAL at offset 0x0010f, length 44: equation type 0
+    physical_value = p0 + p1 * original_sample / (x1-x0)
+    calibration name = bogus units
+    physical_value unit name = foo/bar
+    x0 = 0
+    x1 = 65535
+    p0 = 1.0e0
+    p1 = 65.535e3
+  chunk sCAL at offset 0x00147, length 18: image size 23467E-92 x 31416E6 meters
+  chunk pHYs at offset 0x00165, length 9: 2835x2835 pixels/meter (72 dpi)
+  chunk tIME at offset 0x0017a, length 7:  7 Jun 1996 17:58:08 UTC
+  chunk tEXt at offset 0x0018d, length 9, keyword: Title
+    PNG
+  chunk IDAT at offset 0x001a2, length 8119
+    zlib: deflated, 32K window, default compression
+    rows per pass: 9, 9, 9, 18, 17, 35, 34
+  chunk zTXt at offset 0x02165, length 198, keyword: Description
+    (compressed zTXt text)
+  chunk eXIf at offset 0x02237, length 52:  eXIf after IDAT no longer allowed
+ERRORS DETECTED in libpng-pngtest.png

@@ -131,6 +131,30 @@ Exif, IPTC, XMP, an ICC profile, and a JPEG thumbnail.
 
 Source: own work
 
+## libpng-pngtest.png
+
+Contains various chunk types, including those for HDR support that were added
+[in PNG Third Edition](https://www.w3.org/TR/png-3/#changes-20031110) (`cICP`,
+`cLLI` and `mDCV`).
+
+For a better overview of the chunk types contained in the file, the output of
+the [`pngcheck` program](https://github.com/pnggroup/pngcheck) (available in
+many package repositories, see
+[Repology](https://repology.org/project/pngcheck/versions)) is included in
+[`libpng-pngtest.txt`](./libpng-pngtest.txt). It was generated like this:
+
+```console
+$ pngcheck -h | head -n 5
+PNGcheck, version 4.0.1,
+   by Alexander Lehmann, Andreas Dilger and Greg Roelofs.
+   Compiled with zlib 1.3.1; using zlib 1.3.1.
+
+Test PNG, JNG or MNG image files for corruption, and print size/type info.
+$ pngcheck -vt libpng-pngtest.png > libpng-pngtest.txt
+```
+
+Source: https://github.com/pnggroup/libpng/blob/92c853c34e41570504baa48b8a8169e53b188324/pngtest.png
+
 ---
 
 ## evernote-skitch-win32-v1.1.png [not in the repo]
