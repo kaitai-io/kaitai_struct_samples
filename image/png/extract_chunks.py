@@ -113,11 +113,21 @@ def run(files: list[Path], chunk_types: set[str], outdir: Path) -> None:
     for file_path in files:
         with file_path.open("rb") as f:
             chunk_body_spans = get_chunk_body_spans(f)
+            if not chunk_body_spans:
+                continue
+
+            # We want all chunk indices from one input file zero-padded to the
+            # same width so that the output file names sort naturally (e.g.
+            # `-09.bin` before `-10.bin`), so we need to determine the maximum
+            # chunk index width.
+            index_width = len(str(len(chunk_body_spans) - 1))
+
             for i, span in enumerate(chunk_body_spans):
                 chunk_type = span.type
                 if chunk_type not in chunk_types:
                     continue
-                out_path = outdir / chunk_type / f"{file_path.name}-{i}.bin"
+                name = f"{file_path.name}-{i:0{index_width}d}.bin"
+                out_path = outdir / chunk_type / name
                 with out_path.open("wb") as out_f:
                     f.seek(span.offset)
                     remaining = copyfileobj_with_limit(f, out_f, span.length)
@@ -126,9 +136,7 @@ def run(files: list[Path], chunk_types: set[str], outdir: Path) -> None:
                         f"{file_path}: chunk {i} of type {chunk_type!r} is truncated"
                         f" (wanted {span.length} bytes, but only {span.length - remaining} bytes written)"
                     )
-                    out_path.replace(
-                        outdir / chunk_type / f"{file_path.name}-{i}.bin.trunc"
-                    )
+                    out_path.replace(out_path.with_name(name + ".trunc"))
 
 
 def main() -> None:
