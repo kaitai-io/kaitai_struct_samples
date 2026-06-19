@@ -12,15 +12,12 @@
 import argparse
 import os
 import re
-import struct
 import typing
 from dataclasses import dataclass
 from pathlib import Path
 
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 PNG_CHUNK_TYPE_RE = re.compile(r"[A-Za-z]{4}")
-
-PACKER_U4BE = struct.Struct(">I")
 
 
 def validate_chunk_type(chunk_type: str) -> None:
@@ -47,10 +44,16 @@ def get_chunk_body_spans(f: typing.BinaryIO) -> list[ChunkBodySpan]:
         chunk_len_raw = f.read(4)
         if not chunk_len_raw:
             break
-        len_body = PACKER_U4BE.unpack(chunk_len_raw)[0]
-        chunk_type = f.read(4).decode("ascii")
-        if len(chunk_type) != 4:
-            raise ValueError("unexpected EOF in the middle of 4-byte chunk type")
+        if len(chunk_len_raw) != 4:
+            raise ValueError("unexpected EOF while reading the chunk length")
+        len_body = int.from_bytes(chunk_len_raw, "big")
+        chunk_type_raw = f.read(4)
+        if len(chunk_type_raw) != 4:
+            raise ValueError("unexpected EOF while reading the chunk type")
+        try:
+            chunk_type = chunk_type_raw.decode("ascii")
+        except UnicodeDecodeError as e:
+            raise ValueError(f"invalid non-ASCII chunk type {chunk_type_raw!r}") from e
         ofs_body = f.tell()
         f.seek(len_body + 4, os.SEEK_CUR)
         chunk_spans.append(ChunkBodySpan(chunk_type, ofs_body, len_body))
