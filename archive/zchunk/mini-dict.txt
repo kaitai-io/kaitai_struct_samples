@@ -1,0 +1,16 @@
+zchunk file
+
+Overall checksum type: SHA-256
+Header size: 149
+Header checksum: 05d1d20a8cd25e754b7b7c19b995d6c0ef96c4cadc4769f0baf935824aca7340
+Data size: 131
+Data checksum: 3014d3bf8a9e27b679f75b2ad72ed9d5934958bf4f1f5ea6e9d2aa518eb3e313
+Chunk count: 4
+Chunk checksum type: SHA-512/128
+Dictionary: 8d082667037fc81b94052e90cc763d09
+
+       Chunk Checksum                                 Start    Comp size         Size
+           0 8d082667037fc81b94052e90cc763d09           149           53           44
+           1 91055addaa3ebf91d950456145b41ab5           202           26           53
+           2 608e8712608f65dc1f652dafd521b9c3           228           26           53
+           3 fce91bcee5634ce4cb1711f7f9177e22           254           26           53
