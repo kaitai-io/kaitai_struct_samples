@@ -141,7 +141,7 @@ For a better overview of the chunk types contained in the file, the output of
 the [`pngcheck` program](https://github.com/pnggroup/pngcheck) (available in
 many package repositories, see
 [Repology](https://repology.org/project/pngcheck/versions)) is included in
-[`libpng-pngtest.txt`](./libpng-pngtest.txt). It was generated like this:
+[`libpng-pngtest.png.txt`](./libpng-pngtest.png.txt). It was generated like this:
 
 ```console
 $ pngcheck -h | head -n 5
@@ -150,7 +150,7 @@ PNGcheck, version 4.0.1,
    Compiled with zlib 1.3.1; using zlib 1.3.1.
 
 Test PNG, JNG or MNG image files for corruption, and print size/type info.
-$ pngcheck -vt libpng-pngtest.png > libpng-pngtest.txt
+$ pngcheck -vt libpng-pngtest.png > libpng-pngtest.png.txt
 ```
 
 Source: https://github.com/pnggroup/libpng/blob/92c853c34e41570504baa48b8a8169e53b188324/pngtest.png

@@ -19,12 +19,12 @@ appear verbatim after the zstd magic, frame header and block header.
 The file was generated using the following commands:
 
 ```console
-$ printf 'chunk %s: the quick brown fox jumps over the lazy dog\n' 1 2 3 > mini-input.txt
-$ printf 'the quick brown fox jumps over the lazy dog\n' > mini-raw.zdict
+$ printf 'chunk %s: the quick brown fox jumps over the lazy dog\n' 1 2 3 > mini-dict.txt
+$ printf 'the quick brown fox jumps over the lazy dog\n' > mini-dict.zdict
 $ zck --version
 zchunk 1.5.2
 Copyright (c) 2021 Jonathan Dieter
-$ zck -D mini-raw.zdict -s 'chunk ' -o mini-dict.zck mini-input.txt
+$ zck -D mini-dict.zdict -s 'chunk ' -o mini-dict.zck mini-dict.txt
 ```
 
 The `-s` option makes `zck` start a new chunk at the beginning of each
@@ -32,13 +32,13 @@ occurrence of the given string. `'chunk '` occurs 3 times in the input, so the
 zchunk file has 3 data chunks.
 
 For reference, the output of the `zck_read_header` program is included in
-[`mini-dict.txt`](./mini-dict.txt). It was generated as follows:
+[`mini-dict.zck.txt`](./mini-dict.zck.txt). It was generated as follows:
 
 ```console
 $ zck_read_header --version
 zchunk 1.5.2
 Copyright (c) 2021 Jonathan Dieter
-$ zck_read_header -c mini-dict.zck > mini-dict.txt
+$ zck_read_header -c mini-dict.zck > mini-dict.zck.txt
 ```
 
 > [!NOTE]
