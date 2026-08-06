@@ -19,12 +19,12 @@ appear verbatim after the zstd magic, frame header and block header.
 The file was generated using the following commands:
 
 ```console
-$ printf 'chunk %s: the quick brown fox jumps over the lazy dog\n' 1 2 3 > mini-input.txt
-$ printf 'the quick brown fox jumps over the lazy dog\n' > mini-raw.zdict
+$ printf 'chunk %s: the quick brown fox jumps over the lazy dog\n' 1 2 3 > mini-dict.txt
+$ printf 'the quick brown fox jumps over the lazy dog\n' > mini-dict.zdict
 $ zck --version
 zchunk 1.5.2
 Copyright (c) 2021 Jonathan Dieter
-$ zck -D mini-raw.zdict -s 'chunk ' -o mini-dict.zck mini-input.txt
+$ zck -D mini-dict.zdict -s 'chunk ' -o mini-dict.zck mini-dict.txt
 ```
 
 The `-s` option makes `zck` start a new chunk at the beginning of each
