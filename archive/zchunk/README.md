@@ -13,7 +13,8 @@ section in zchunk's README). It uses a "raw content" zstd dictionary (see
 docs](https://github.com/facebook/zstd/blob/b706286adbba780006a47ef92df0ad7a785666b6/doc/zstd_compression_format.md#dictionary-format)).
 The dictionary is stored in chunk 0 of the `.zck` file, right before the data
 chunks (chunks 1-3). It was also compressed using zstd, but since it was already
-so small, zstd stored it verbatim, following the zstd magic and header.
+so small, zstd stored it as a single raw (uncompressed) block, so its contents
+appear verbatim after the zstd magic, frame header and block header.
 
 The file was generated using the following commands:
 
@@ -25,6 +26,10 @@ zchunk 1.5.2
 Copyright (c) 2021 Jonathan Dieter
 $ zck -D mini-raw.zdict -s 'chunk ' -o mini-dict.zck mini-input.txt
 ```
+
+The `-s` option makes `zck` start a new chunk at the beginning of each
+occurrence of the given string. `'chunk '` occurs 3 times in the input, so the
+zchunk file has 3 data chunks.
 
 For reference, the output of the `zck_read_header` program is included in
 [`mini-dict.txt`](./mini-dict.txt). It was generated as follows:
