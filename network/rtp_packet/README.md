@@ -15,8 +15,9 @@ curl -LO https://gitlab.com/wireshark/wireshark/-/wikis/uploads/__moin_import__/
 tshark -r rtp_example.raw -Y "frame.number == 34" --disable-protocol rtp -T fields -e data | xxd -r -ps > pcma-marker.bin
 ```
 
-Shell commands to generate the file `pcma-marker.txt`:
+Shell commands to generate the file
+[`pcma-marker.bin.txt`](./pcma-marker.bin.txt):
 
 ```sh
-tshark -r rtp_example.raw -Y "frame.number == 34" -O rtp | sed -n '/Real-Time Transport Protocol/,$p'
+tshark -r rtp_example.raw -Y "frame.number == 34" -O rtp | sed -n '/Real-Time Transport Protocol/,$p' > pcma-marker.bin.txt
 ```

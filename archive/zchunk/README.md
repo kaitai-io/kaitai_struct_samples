@@ -32,13 +32,13 @@ occurrence of the given string. `'chunk '` occurs 3 times in the input, so the
 zchunk file has 3 data chunks.
 
 For reference, the output of the `zck_read_header` program is included in
-[`mini-dict.txt`](./mini-dict.txt). It was generated as follows:
+[`mini-dict.zck.txt`](./mini-dict.zck.txt). It was generated as follows:
 
 ```console
 $ zck_read_header --version
 zchunk 1.5.2
 Copyright (c) 2021 Jonathan Dieter
-$ zck_read_header -c mini-dict.zck > mini-dict.txt
+$ zck_read_header -c mini-dict.zck > mini-dict.zck.txt
 ```
 
 > [!NOTE]
