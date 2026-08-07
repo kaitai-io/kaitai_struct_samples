@@ -49,6 +49,39 @@ $ zck_read_header -c mini-dict.zck > mini-dict.zck.txt
 
 Source: own work
 
+## mini-dict.zhr
+
+A zchunk detached header file extracted from [mini-dict.zck](#mini-dictzck). It
+is bit-for-bit identical to `mini-dict.zck`, except that it only contains the
+header and the dictionary (chunk 0), not the data chunks (chunks 1-3; note that
+chunk 1 starts on byte 202 - see the "Start" column in
+[`mini-dict.zck.txt:14`](./mini-dict.zck.txt#L14), which is exactly the size of
+`mini-dict.zhr`), and the magic number is `'\0ZHR1'` instead of `'\0ZCK1'`:
+
+```console
+$ cmp -l -b mini-dict.zck mini-dict.zhr
+cmp: EOF on ‘mini-dict.zhr’ after byte 202
+  3 103 C    110 H
+  4 113 K    122 R
+```
+
+The file was generated as follows:
+
+```console
+$ unzck --version
+zchunk 1.5.2
+Copyright (c) 2021 Jonathan Dieter
+$ unzck --header mini-dict.zck
+mini-dict
+```
+
+> [!NOTE]
+> The `unzck` utility is part of zchunk's reference implementation, which is
+> available in many package repositories, typically under the package name
+> `zchunk` - see [Repology](https://repology.org/project/zchunk/versions).
+
+Source: own work
+
 ## mini-uncomp-cksums.zck
 
 A minimal zchunk file with uncompressed checksums, which means that
