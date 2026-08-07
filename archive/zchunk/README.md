@@ -48,3 +48,52 @@ $ zck_read_header -c mini-dict.zck > mini-dict.zck.txt
 > [Repology](https://repology.org/project/zchunk/versions).
 
 Source: own work
+
+## mini-uncomp-cksums.zck
+
+A minimal zchunk file with uncompressed checksums, which means that
+["flag 2"](https://github.com/zchunk/zchunk/blob/99e51afa38c723e7c25834c2c3b305d20ef55d04/zchunk_format.txt#L86)
+("File may be applied against an uncompressed source") is set in the header.
+This adds a second checksum to each index entry: the checksum of the
+uncompressed chunk. This allows a client updating the file to also reuse chunks
+from a local uncompressed copy (an already extracted file), not just from an
+older `.zck` file.
+
+A side effect is that the total data checksum is all zeros (see
+[`mini-uncomp-cksums.zck.txt:9`](./mini-uncomp-cksums.zck.txt#L9)), because when
+flag 2 is set, it ["must not be checked and should not be
+generated"](https://github.com/zchunk/zchunk/blob/99e51afa38c723e7c25834c2c3b305d20ef55d04/zchunk_format.txt#L41-L42).
+
+The file was generated using the following commands:
+
+```console
+$ printf '%s\n' 'Hello,' 'world' > mini-uncomp-cksums.txt
+$ zck --version
+zchunk 1.5.2
+Copyright (c) 2021 Jonathan Dieter
+$ zck -u -s 'world' -o mini-uncomp-cksums.zck mini-uncomp-cksums.txt
+```
+
+The `-u` option makes `zck` add the uncompressed checksums. The `-s` option
+starts a new chunk at the beginning of each occurrence of the given string.
+`'world'` occurs once in the input, so the zchunk file has 2 data chunks (3
+including the empty dictionary chunk).
+
+For reference, the output of the `zck_read_header` program is included in
+[`mini-uncomp-cksums.zck.txt`](./mini-uncomp-cksums.zck.txt). It was generated
+as follows:
+
+```console
+$ zck_read_header --version
+zchunk 1.5.2
+Copyright (c) 2021 Jonathan Dieter
+$ zck_read_header -c mini-uncomp-cksums.zck > mini-uncomp-cksums.zck.txt
+```
+
+> [!NOTE]
+> The `zck` and `zck_read_header` utilities are part of zchunk's reference
+> implementation, which is available in many package repositories, typically
+> under the package name `zchunk` - see
+> [Repology](https://repology.org/project/zchunk/versions).
+
+Source: own work
