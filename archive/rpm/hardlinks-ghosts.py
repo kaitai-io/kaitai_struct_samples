@@ -226,6 +226,9 @@ def build(topdir: Path, fmt: RpmFormat) -> Path:
         "rpmbuild",
         "-bb",
         "--quiet",
+        # Don't check the (nonexistent) `BuildRequires` against the rpmdb, which
+        # a non-root user may not be able to open.
+        "--nodeps",
         "--define",
         f"_topdir {topdir}",
         "--define",
@@ -260,7 +263,10 @@ def check_payload(path: Path, fmt: RpmFormat) -> None:
 
 
 def file_table(path: Path) -> FileTable:
-    out = run(["rpm", "-qp", "--qf", FILE_TABLE_QUERY, str(path)])
+    # The packages aren't signed, and without `--nosignature`, rpm would try
+    # to load the keyring from the rpmdb, which a non-root user may not be
+    # able to open.
+    out = run(["rpm", "-qp", "--nosignature", "--qf", FILE_TABLE_QUERY, str(path)])
     table = [line.split("\t") for line in out.splitlines()]
     for row in table:
         if len(row) != len(FILE_TABLE_COLUMNS):
