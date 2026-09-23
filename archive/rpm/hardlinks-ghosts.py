@@ -48,7 +48,6 @@ RPM 6.0 or later must be installed.
 
 import argparse
 import enum
-import os
 import re
 import shlex
 import shutil
@@ -119,14 +118,16 @@ EXPECTED_PATHS = [TOP_DIR] + [
 # packages wouldn't test what they're meant to
 INODE_GROUPS: list[set[int]] = [{1, 3, 5}, {7, 8}]
 
-# Clamp file mtimes, so that both packages have identical file trees, and fix
-# the build time and host, so that a rerun in the same environment reproduces
-# the packages byte for byte
-SOURCE_DATE_EPOCH = "1767225600"  # 2026-01-01T00:00:00Z
+# Fix the build time and host, so that a rerun in the same environment
+# reproduces the packages byte for byte, and clamp file mtimes to the build
+# time, so that both packages have identical file trees
 DEFINES: dict[str, str] = {
     "_binary_payload": "w.ufdio",  # Uncompressed
-    "build_mtime_policy": "clamp_to_source_date_epoch",
-    "use_source_date_epoch_as_buildtime": "1",
+    "_buildtime": "1767225600",  # 2026-01-01T00:00:00Z
+    "build_mtime_policy": "clamp_to_buildtime",
+    # Some distributions (e.g. Fedora) enable it, but the spec has no
+    # `%changelog` to take a date from, so `rpmbuild` would print a warning
+    "source_date_epoch_from_changelog": "0",
     "_buildhost": "localhost",
     # Keep the build root exactly as %install created it (e.g. Fedora's
     # `add-determinism` would rewrite files)
@@ -192,14 +193,14 @@ class GenError(Exception):
     pass
 
 
-def run(cmd: list[str], env: dict[str, str] | None = None) -> str:
+def run(cmd: list[str]) -> str:
     """Run a command and return its stdout.
 
     Its stderr is passed through so that warnings (e.g. about a misspelled
     macro value) aren't lost.
     """
     try:
-        return subprocess.check_output(cmd, encoding="utf-8", env=env)
+        return subprocess.check_output(cmd, encoding="utf-8")
     except FileNotFoundError:
         raise GenError(
             f"{cmd[0]} not found (RPM 6.0+ is required; some distributions "
@@ -243,7 +244,7 @@ def build(topdir: Path, fmt: RpmFormat) -> Path:
     for name, value in DEFINES.items():
         cmd += ["--define", f"{name} {value}"]
     cmd.append(str(spec))
-    run(cmd, env={**os.environ, "SOURCE_DATE_EPOCH": SOURCE_DATE_EPOCH})
+    run(cmd)
     built = list((topdir / "RPMS" / "noarch").glob("*.rpm"))
     if len(built) != 1:
         raise GenError(f"expected one package from `rpmbuild`, found {built}")
