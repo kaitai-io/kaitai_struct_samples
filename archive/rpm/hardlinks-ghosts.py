@@ -201,7 +201,10 @@ def run(cmd: list[str], env: dict[str, str] | None = None) -> str:
     try:
         return subprocess.check_output(cmd, encoding="utf-8", env=env)
     except FileNotFoundError:
-        raise GenError(f"{cmd[0]} not found (RPM 6.0+ is required)") from None
+        raise GenError(
+            f"{cmd[0]} not found (RPM 6.0+ is required; some distributions "
+            "package `rpmbuild` separately, e.g. Fedora as `rpm-build`)",
+        ) from None
     except subprocess.CalledProcessError as e:
         raise GenError(
             f"{shlex.join(cmd)} failed with exit code {e.returncode}\n{e.stdout}",
@@ -209,7 +212,10 @@ def run(cmd: list[str], env: dict[str, str] | None = None) -> str:
 
 
 def check_rpm_version() -> str:
-    version = run(["rpm", "--version"]).strip()
+    # Check `rpmbuild` rather than `rpm` - on Fedora, `rpm` is preinstalled,
+    # but we mainly need `rpmbuild` from the `rpm-build` package, which must
+    # be installed manually.
+    version = run(["rpmbuild", "--version"]).strip()
     m = re.search(r"(\d+)\.", version)
     if not m or int(m.group(1)) < 6:
         raise GenError(
